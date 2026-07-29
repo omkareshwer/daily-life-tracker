@@ -1,1 +1,16 @@
 
+{
+  "total_xp": 0,
+  "daily_tasks": [
+    { "title": "Study / Revision (1 hr)", "xp": 20, "completed": false },
+    { "title": "Coding / Project Commit", "xp": 25, "completed": false },
+    { "title": "Exercise / Walk (30 mins)", "xp": 15, "completed": false },
+    { "title": "Read 5 pages of a book", "xp": 10, "completed": false }
+  ],
+  "rewards": [
+    { "level": "Level 1", "required_xp": 100, "reward": "Cheat Meal / Favorite Snack 🍕" },
+    { "level": "Level 2", "required_xp": 300, "reward": "Movie Night / Gaming Session 🎮" },
+    { "level": "Level 3", "required_xp": 700, "reward": "Buy a New Tech Accessory 🎧" },
+    { "level": "Level 4", "required_xp": 1500, "reward": "Weekend Trip / Big Purchase ✈️" }
+  ]
+}
