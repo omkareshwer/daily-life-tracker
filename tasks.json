@@ -4,13 +4,13 @@
     {
       "title": "Study / Revision (1 hr)",
       "xp": 20,
-      "completed": false,
+      "completed": true,
       "history": []
     },
     {
       "title": "Coding / Project Commit",
       "xp": 25,
-      "completed": false,
+      "completed": true,
       "history": []
     },
     {
