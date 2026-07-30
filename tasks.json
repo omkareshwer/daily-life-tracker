@@ -4,22 +4,26 @@
     {
       "title": "Study / Revision (1 hr)",
       "xp": 20,
-      "completed": false
+      "completed": false,
+      "history": []
     },
     {
       "title": "Coding / Project Commit",
       "xp": 25,
-      "completed": false
+      "completed": false,
+      "history": []
     },
     {
       "title": "Exercise / Walk (30 mins)",
       "xp": 15,
-      "completed": false
+      "completed": false,
+      "history": []
     },
     {
       "title": "Read 5 pages of a book",
       "xp": 10,
-      "completed": false
+      "completed": false,
+      "history": []
     }
   ],
   "rewards": [

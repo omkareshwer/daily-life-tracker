@@ -2,7 +2,7 @@
 
 ### 📊 Current Score Board
 - **Total XP Earned:** `45 XP`
-- **Last Updated:** Today
+- **Last Updated:** `2026-07-30`
 
 ---
 
@@ -17,13 +17,13 @@
 
 ---
 
-## 📋 Standard Tasks List
+## 📋 Standard Tasks & Activity Log
 
-| Task Title | XP Value |
-| :--- | :--- |
-| Study / Revision (1 hr) | +20 XP |
-| Coding / Project Commit | +25 XP |
-| Exercise / Walk (30 mins) | +15 XP |
-| Read 5 pages of a book | +10 XP |
+| Task Title | XP Value | Total Times Completed | Last Completed Date |
+| :--- | :--- | :--- | :--- |
+| Study / Revision (1 hr) | +20 XP | 0 times | `Never` |
+| Coding / Project Commit | +25 XP | 0 times | `Never` |
+| Exercise / Walk (30 mins) | +15 XP | 0 times | `Never` |
+| Read 5 pages of a book | +10 XP | 0 times | `Never` |
 
 > *Update `tasks.json` daily and commit to gain XP and unlock rewards!*
