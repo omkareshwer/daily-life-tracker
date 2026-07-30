@@ -1,5 +1,5 @@
 {
-  "total_xp": 20,
+  "total_xp": 45,
   "daily_tasks": [
     {
       "title": "Study / Revision (1 hr)",
@@ -9,7 +9,7 @@
     {
       "title": "Coding / Project Commit",
       "xp": 25,
-      "completed": true
+      "completed": false
     },
     {
       "title": "Exercise / Walk (30 mins)",
