@@ -20,3 +20,10 @@ jobs:
 
       - name: Run Tracker Script
         run: python update_progress.py
+
+      - name: Commit and Push Updated Files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md tasks.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update XP and README [skip ci]" && git push)
