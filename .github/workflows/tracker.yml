@@ -2,28 +2,5 @@ name: Auto Reward Tracker
 
 on:
   push:
-    paths:
-      - 'tasks.json'
-
-jobs:
-  update-readme:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Run Script
-        run: python update_progress.py
-
-      - name: Commit and Push changes
-        run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          git add README.md tasks.json
-          git diff --staged --quiet || git commit -m "Auto update XP and Rewards [skip ci]"
-          git push
+    branches: [ main ]
+  workflow_dispatch:
