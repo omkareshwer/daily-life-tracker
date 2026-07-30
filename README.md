@@ -1,7 +1,7 @@
 # 🎮 Daily Life & Habit Tracker
 
 ### 📊 Current Score Board
-- **Total XP Earned:** `0 XP`
+- **Total XP Earned:** `20 XP`
 - **Last Updated:** Today
 
 ---
