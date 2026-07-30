@@ -1,17 +1,21 @@
 {
-  "total_xp": 45,
+  "total_xp": 90,
   "daily_tasks": [
     {
       "title": "Study / Revision (1 hr)",
       "xp": 20,
-      "completed": true,
-      "history": []
+      "completed": false,
+      "history": [
+        "2026-07-30"
+      ]
     },
     {
       "title": "Coding / Project Commit",
       "xp": 25,
-      "completed": true,
-      "history": []
+      "completed": false,
+      "history": [
+        "2026-07-30"
+      ]
     },
     {
       "title": "Exercise / Walk (30 mins)",
