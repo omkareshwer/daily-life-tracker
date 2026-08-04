@@ -82,23 +82,25 @@ def run():
     needed_xp = max(target_xp - prev_target, 1)
     percentage = min(int((current_level_xp / needed_xp) * 100), 100)
 
-    # Shields Badges URLs
-    streak_badge = f"https://img.shields.io/badge/Streak-{current_streak}_Days-orange?style=for-the-badge&logo=gitbook&logoColor=white"
-    xp_badge = f"https://img.shields.io/badge/Total_XP-{total_xp}_XP-blue?style=for-the-badge&logo=gamepad&logoColor=white"
-    rank_badge = f"https://img.shields.io/badge/Rank-{rank_name.replace(' ', '_')}-{badge_color}?style=for-the-badge&logo=shield"
+    # Dark Cyberpunk Shields Badges URLs
+    streak_badge = f"https://img.shields.io/badge/Streak-{current_streak}_Days-black?style=for-the-badge&logo=gitbook&logoColor=orange"
+    xp_badge = f"https://img.shields.io/badge/Total_XP-{total_xp}_XP-101010?style=for-the-badge&logo=gamepad&logoColor=00f0ff"
+    rank_badge = f"https://img.shields.io/badge/Rank-{rank_name.replace(' ', '_')}-black?style=for-the-badge&logo=shield&logoColor=gold"
 
-    # Markdown Construction
+    # Markdown Construction (Dark Mode Theme)
     lines = []
-    lines.append(f"# 🎮 {USER_NAME}'s Daily Life & Habit Tracker\n")
     
-    # Header Badges Box
+    # 1. Dark Aesthetic Top Banner
+    lines.append(f"![Header Banner](https://capsule-render.vercel.app/api?type=waving&color=0:000000,100:0f172a&height=180&section=header&text={USER_NAME}'s%20Habit%20Tracker&fontSize=35&fontColor=ffffff&animation=fadeIn)\n")
+    
+    # 2. Glowing Dark Badges
     lines.append(f"![Rank]({rank_badge}) ![Streak]({streak_badge}) ![XP]({xp_badge})\n")
     
-    # Visual Progress Bar Box (GitHub Callout)
-    lines.append("> [!NOTE]")
+    # 3. High Contrast Dark Progress Card
+    lines.append("> [!IMPORTANT]")
     lines.append(f"> ### 📈 **Level Progress: {percentage}%**")
     lines.append(f"> <progress value=\"{percentage}\" max=\"100\" style=\"width:100%; height:20px;\"></progress>")
-    lines.append(f"> **Current Level XP:** `{current_level_xp} / {needed_xp} XP` (Next Level Goal: `{target_xp} XP`)\n")
+    lines.append(f"> **Current Level XP:** `{current_level_xp} / {needed_xp} XP` (Next Goal: `{target_xp} XP`)\n")
 
     lines.append("---\n")
     lines.append("## 🏆 Reward Matrix & Status\n")
