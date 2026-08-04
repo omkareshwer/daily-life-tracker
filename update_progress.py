@@ -11,8 +11,7 @@ def get_rank_and_badge(xp):
     else:
         return "👑 Legendary Life-Hacker"
 
-def generate_progress_bar(xp, next_target=500):
-    # Target levels
+def generate_progress_bar(xp):
     levels = [500, 1500, 3500, 10000]
     target = min([l for l in levels if l > xp], default=10000)
     
@@ -24,13 +23,13 @@ def generate_progress_bar(xp, next_target=500):
             break
             
     current_level_xp = xp - prev_target
-    needed_xp = target - prev_target
+    needed_xp = max(target - prev_target, 1)
     
     percentage = min(int((current_level_xp / needed_xp) * 100), 100)
     filled_length = int(percentage // 10)
     bar = "█" * filled_length + "░" * (10 - filled_length)
     
-    return f"[{bar}] {percentage}% ({xp}/{target} XP)", target
+    return f"[{bar}] {percentage}% ({xp}/{target} XP)"
 
 def calculate_streak(history_dates):
     if not history_dates:
@@ -40,7 +39,6 @@ def calculate_streak(history_dates):
     today = datetime.now().date()
     yesterday = today - timedelta(days=1)
     
-    # Dates conversion
     date_objs = [datetime.strptime(d, '%Y-%m-%d').date() for d in sorted_dates]
     
     if today not in date_objs and yesterday not in date_objs:
@@ -66,7 +64,6 @@ def run():
     today_xp = sum(t['xp'] for t in data['daily_tasks'] if t.get('completed'))
     data['total_xp'] += today_xp
 
-    # Collect all dates for streak
     all_completed_dates = []
 
     # Update task history and reset completion
@@ -81,22 +78,62 @@ def run():
             
         all_completed_dates.extend(t['history'])
 
-    # Save back to tasks.json
+    # Save updated JSON
     with open('tasks.json', 'w') as f:
         json.dump(data, f, indent=2)
 
     total_xp = data['total_xp']
     rank = get_rank_and_badge(total_xp)
-    progress_bar, next_target = generate_progress_bar(total_xp)
+    progress_bar = generate_progress_bar(total_xp)
     current_streak = calculate_streak(all_completed_dates)
 
-    # Build README Markdown
-    readme_content = f"""# 🎮 Daily Life & Habit Tracker
+    # Clean multi-line string construction
+    lines = []
+    lines.append("# 🎮 Daily Life & Habit Tracker\n")
+    lines.append('<div align="center">\n')
+    lines.append(f"### 🛡️ **Current Rank:** `{rank}`")
+    lines.append(f"### 🔥 **Streak:** `{current_streak} Days` | 📊 **Total XP:** `{total_xp} XP` \n")
+    lines.append("```text")
+    lines.append(f"Level Progress: {progress_bar}")
+    lines.append("```\n")
+    lines.append("</div>\n")
+    lines.append("---\n")
+    lines.append("## 🏆 Reward Matrix & Status\n")
+    lines.append("| Level | Required XP | Reward | Status |")
+    lines.append("| :--- | :--- | :--- | :--- |")
 
-<div align="center">
+    for r in data['rewards']:
+        status = "✅ UNLOCKED" if total_xp >= r['required_xp'] else "🔒 Locked"
+        lines.append(f"| {r['level']} | {r['required_xp']} XP | {r['reward']} | **{status}** |")
 
-### 🛡️ **Current Rank:** `{rank}`
-### 🔥 **Streak:** `{current_streak} Days` | 📊 **Total XP:** `{total_xp} XP`
+    lines.append("\n---\n")
+    lines.append("## 📋 Standard Tasks List\n")
+    lines.append("| Task Title | XP Value | Total Times Completed | Last Completed Date |")
+    lines.append("| :--- | :--- | :--- | :--- |")
 
-```text
-Level Progress: {progress_bar}
+    for t in data['daily_tasks']:
+        completed_count = len(t.get('history', []))
+        last_date = t['history'][-1] if t.get('history') else "Never"
+        lines.append(f"| {t['title']} | +{t['xp']} XP | {completed_count} times | `{last_date}` |")
+
+    lines.append("\n---\n")
+    lines.append("## 📅 Last 7 Days Activity History\n")
+    lines.append("| Day | Date | Status |")
+    lines.append("| :--- | :--- | :--- |")
+
+    for i in range(6, -1, -1):
+        day_date = (today_dt - timedelta(days=i)).strftime('%Y-%m-%d')
+        day_name = (today_dt - timedelta(days=i)).strftime('%a')
+        was_active = any(day_date in t.get('history', []) for t in data['daily_tasks'])
+        status_icon = "🔥 Active Day" if was_active else "❌ Missed"
+        lines.append(f"| {day_name} | `{day_date}` | {status_icon} |")
+
+    lines.append("\n> *⚡ Complete daily tasks in `tasks.json` to keep your streak alive and level up!*")
+
+    readme_content = "\n".join(lines)
+
+    with open('README.md', 'w', encoding='utf-8') as f:
+        f.write(readme_content)
+
+if __name__ == '__main__':
+    run()
