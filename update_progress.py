@@ -29,7 +29,7 @@ def generate_progress_bar(xp):
     filled_length = int(percentage // 10)
     bar = "█" * filled_length + "░" * (10 - filled_length)
     
-    return f"[{bar}] {percentage}% ({xp}/{target} XP)"
+    return f"`[{bar}] {percentage}% ({xp}/{target} XP)`"
 
 def calculate_streak(history_dates):
     if not history_dates:
@@ -87,16 +87,14 @@ def run():
     progress_bar = generate_progress_bar(total_xp)
     current_streak = calculate_streak(all_completed_dates)
 
-    # Clean multi-line string construction
+    # Clean Markdown construction without div bugs
     lines = []
     lines.append("# 🎮 Daily Life & Habit Tracker\n")
-    lines.append('<div align="center">\n')
-    lines.append(f"### 🛡️ **Current Rank:** `{rank}`")
-    lines.append(f"### 🔥 **Streak:** `{current_streak} Days` | 📊 **Total XP:** `{total_xp} XP` \n")
-    lines.append("```text")
-    lines.append(f"Level Progress: {progress_bar}")
-    lines.append("```\n")
-    lines.append("</div>\n")
+    lines.append(f"### 🛡️ Rank: **{rank}**\n")
+    lines.append(f"- 🔥 **Streak:** `{current_streak} Days`")
+    lines.append(f"- 📊 **Total XP:** `{total_xp} XP`")
+    lines.append(f"- 📈 **Level Progress:** {progress_bar}\n")
+    
     lines.append("---\n")
     lines.append("## 🏆 Reward Matrix & Status\n")
     lines.append("| Level | Required XP | Reward | Status |")
