@@ -1,11 +1,11 @@
-# 🎮 Parthsinh's Daily Life & Habit Tracker
+![Header Banner](https://capsule-render.vercel.app/api?type=waving&color=0:000000,100:0f172a&height=180&section=header&text=Parthsinh's%20Habit%20Tracker&fontSize=35&fontColor=ffffff&animation=fadeIn)
 
-![Rank](https://img.shields.io/badge/Rank-Novice_Tracker-red?style=for-the-badge&logo=shield) ![Streak](https://img.shields.io/badge/Streak-0_Days-orange?style=for-the-badge&logo=gitbook&logoColor=white) ![XP](https://img.shields.io/badge/Total_XP-90_XP-blue?style=for-the-badge&logo=gamepad&logoColor=white)
+![Rank](https://img.shields.io/badge/Rank-Novice_Tracker-black?style=for-the-badge&logo=shield&logoColor=gold) ![Streak](https://img.shields.io/badge/Streak-0_Days-black?style=for-the-badge&logo=gitbook&logoColor=orange) ![XP](https://img.shields.io/badge/Total_XP-90_XP-101010?style=for-the-badge&logo=gamepad&logoColor=00f0ff)
 
-> [!NOTE]
+> [!IMPORTANT]
 > ### 📈 **Level Progress: 18%**
 > <progress value="18" max="100" style="width:100%; height:20px;"></progress>
-> **Current Level XP:** `90 / 500 XP` (Next Level Goal: `500 XP`)
+> **Current Level XP:** `90 / 500 XP` (Next Goal: `500 XP`)
 
 ---
 
