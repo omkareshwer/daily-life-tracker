@@ -1,10 +1,6 @@
 ![Header Banner](https://capsule-render.vercel.app/api?type=rect&color=0:09090e,100:1a1a2e&height=180&section=header&text=🎮%20Parthsinh'S%20HABIT%20TRACKER&fontSize=34&fontColor=00f0ff&animation=fadeIn)
 
-<div align="center">
-
-![Rank](https://img.shields.io/badge/🛡️_RANK-Novice_Tracker-ff4757?style=for-the-badge&labelColor=000000) ![Streak](https://img.shields.io/badge/🔥_STREAK-0_DAYS-ff6b81?style=for-the-badge&labelColor=000000) ![XP](https://img.shields.io/badge/⚡_TOTAL_XP-90_XP-70a1ff?style=for-the-badge&labelColor=000000)
-
-</div>
+![Rank](https://img.shields.io/badge/Rank-Novice_Tracker-ff4757?style=for-the-badge&logo=shield&logoColor=white) ![Streak](https://img.shields.io/badge/Streak-0_Days-ff6b81?style=for-the-badge&logo=gitbook&logoColor=white) ![XP](https://img.shields.io/badge/Total_XP-90_XP-70a1ff?style=for-the-badge&logo=gamepad&logoColor=white)
 
 > [!IMPORTANT]
 > ### 🚀 **Level Progress: 18%**
