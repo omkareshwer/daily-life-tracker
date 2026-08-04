@@ -1,37 +1,17 @@
 import json
 from datetime import datetime, timedelta
 
-USER_NAME = "Parthsinh"  # 👈 Aapka Name Profile Header Ke Liye
+USER_NAME = "Parthsinh"
 
-def get_rank_and_badge(xp):
+def get_rank_details(xp):
     if xp < 500:
-        return "🥉 Novice Tracker"
+        return "Novice Tracker", "🥉", "red"
     elif xp < 1500:
-        return "🥈 Habit Apprentice"
+        return "Habit Apprentice", "🥈", "yellow"
     elif xp < 3500:
-        return "🥇 Consistency Master"
+        return "Consistency Master", "🥇", "green"
     else:
-        return "👑 Legendary Life-Hacker"
-
-def generate_progress_bar(xp):
-    levels = [500, 1500, 3500, 10000]
-    target = min([l for l in levels if l > xp], default=10000)
-    
-    prev_target = 0
-    for l in levels:
-        if xp >= l:
-            prev_target = l
-        else:
-            break
-            
-    current_level_xp = xp - prev_target
-    needed_xp = max(target - prev_target, 1)
-    
-    percentage = min(int((current_level_xp / needed_xp) * 100), 100)
-    filled_length = int(percentage // 10)
-    bar = "█" * filled_length + "░" * (10 - filled_length)
-    
-    return f"`[{bar}] {percentage}% ({xp}/{target} XP)`"
+        return "Legendary Life-Hacker", "👑", "purple"
 
 def calculate_streak(history_dates):
     if not history_dates:
@@ -85,51 +65,73 @@ def run():
         json.dump(data, f, indent=2)
 
     total_xp = data['total_xp']
-    rank = get_rank_and_badge(total_xp)
-    progress_bar = generate_progress_bar(total_xp)
+    rank_name, badge_icon, badge_color = get_rank_details(total_xp)
     current_streak = calculate_streak(all_completed_dates)
 
-    # Clean Markdown construction
+    # Level calculation for progress bar
+    levels = [500, 1500, 3500, 10000]
+    target_xp = min([l for l in levels if l > total_xp], default=10000)
+    prev_target = 0
+    for l in levels:
+        if total_xp >= l:
+            prev_target = l
+        else:
+            break
+            
+    current_level_xp = total_xp - prev_target
+    needed_xp = max(target_xp - prev_target, 1)
+    percentage = min(int((current_level_xp / needed_xp) * 100), 100)
+
+    # Colors and Badges URLs
+    streak_badge = f"https://img.shields.io/badge/Streak-{current_streak}_Days-orange?style=for-the-badge&logo=gitbook&logoColor=white"
+    xp_badge = f"https://img.shields.io/badge/Total_XP-{total_xp}_XP-blue?style=for-the-badge&logo=gamepad&logoColor=white"
+    rank_badge = f"https://img.shields.io/badge/Rank-{rank_name.replace(' ', '_')}-{badge_color}?style=for-the-badge&logo=shield"
+
+    # Markdown Construction
     lines = []
     lines.append(f"# 🎮 {USER_NAME}'s Daily Life & Habit Tracker\n")
-    lines.append(f"### 👤 Player Profile: **{USER_NAME}**")
-    lines.append(f"### 🛡️ Rank: **{rank}**\n")
-    lines.append(f"- 🔥 **Current Streak:** `{current_streak} Days`")
-    lines.append(f"- 📊 **Total XP Earned:** `{total_xp} XP`")
-    lines.append(f"- 📈 **Level Progress:** {progress_bar}\n")
     
+    # Header Badges Box
+    lines.append(f"![Rank]({rank_badge}) ![Streak]({streak_badge}) ![XP]({xp_badge})\n")
+    
+    # Visual HTML Progress Bar Section
+    lines.append("> [!NOTE]")
+    lines.append(f"> ### 📈 **Level Progress: {percentage}%**")
+    lines.append(f"> <progress value=\"{percentage}\" max=\"100\" style=\"width:100%; height:20px;\"></progress>")
+    lines.append(f"> **Current Level XP:** `{current_level_xp} / {needed_xp} XP` (Next Level: `{target_xp} XP`)\n")
+
     lines.append("---\n")
     lines.append("## 🏆 Reward Matrix & Status\n")
     lines.append("| Level | Required XP | Reward | Status |")
-    lines.append("| :--- | :--- | :--- | :--- |")
+    lines.append("| :---: | :---: | :--- | :---: |")
 
     for r in data['rewards']:
-        status = "✅ UNLOCKED" if total_xp >= r['required_xp'] else "🔒 Locked"
-        lines.append(f"| {r['level']} | {r['required_xp']} XP | {r['reward']} | **{status}** |")
+        status = "✅ **UNLOCKED**" if total_xp >= r['required_xp'] else "🔒 **Locked**"
+        lines.append(f"| **{r['level']}** | `{r['required_xp']} XP` | {r['reward']} | {status} |")
 
     lines.append("\n---\n")
     lines.append("## 📋 Standard Tasks List\n")
-    lines.append("| Task Title | XP Value | Total Times Completed | Last Completed Date |")
-    lines.append("| :--- | :--- | :--- | :--- |")
+    lines.append("| Task Title | XP Value | Total Completed | Last Date |")
+    lines.append("| :--- | :---: | :---: | :---: |")
 
     for t in data['daily_tasks']:
         completed_count = len(t.get('history', []))
         last_date = t['history'][-1] if t.get('history') else "Never"
-        lines.append(f"| {t['title']} | +{t['xp']} XP | {completed_count} times | `{last_date}` |")
+        lines.append(f"| {t['title']} | `+{t['xp']} XP` | `{completed_count} times` | `{last_date}` |")
 
     lines.append("\n---\n")
     lines.append("## 📅 Last 7 Days Activity History\n")
-    lines.append("| Day | Date | Status |")
-    lines.append("| :--- | :--- | :--- |")
+    lines.append("| Day | Date | Activity Status |")
+    lines.append("| :---: | :---: | :---: |")
 
     for i in range(6, -1, -1):
         day_date = (today_dt - timedelta(days=i)).strftime('%Y-%m-%d')
         day_name = (today_dt - timedelta(days=i)).strftime('%a')
         was_active = any(day_date in t.get('history', []) for t in data['daily_tasks'])
-        status_icon = "🔥 Active Day" if was_active else "❌ Missed"
+        status_icon = "🔥 **Active Day**" if was_active else "❌ *Missed*"
         lines.append(f"| {day_name} | `{day_date}` | {status_icon} |")
 
-    lines.append(f"\n> *⚡ Keep updating `tasks.json` daily, {USER_NAME}! Keep your streak alive and level up!*")
+    lines.append(f"\n> [!TIP]\n> Keep updating `tasks.json` daily, **{USER_NAME}**! Stay consistent to unlock new rewards and level up!")
 
     readme_content = "\n".join(lines)
 
