@@ -5,7 +5,7 @@
 > [!NOTE]
 > ### 📈 **Level Progress: 18%**
 > <progress value="18" max="100" style="width:100%; height:20px;"></progress>
-> **Current Level XP:** `90 / 500 XP` (Next Level: `500 XP`)
+> **Current Level XP:** `90 / 500 XP` (Next Level Goal: `500 XP`)
 
 ---
 
