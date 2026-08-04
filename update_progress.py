@@ -5,13 +5,13 @@ USER_NAME = "Parthsinh"
 
 def get_rank_details(xp):
     if xp < 500:
-        return "Novice Tracker", "🥉", "red"
+        return "Novice Tracker", "🥉", "ff4757"  # Soft Red
     elif xp < 1500:
-        return "Habit Apprentice", "🥈", "yellow"
+        return "Habit Apprentice", "🥈", "eccc68"  # Gold
     elif xp < 3500:
-        return "Consistency Master", "🥇", "green"
+        return "Consistency Master", "🥇", "2ed573"  # Emerald Green
     else:
-        return "Legendary Life-Hacker", "👑", "purple"
+        return "Legendary Life-Hacker", "👑", "70a1ff"  # Neon Blue
 
 def calculate_streak(history_dates):
     if not history_dates:
@@ -82,58 +82,58 @@ def run():
     needed_xp = max(target_xp - prev_target, 1)
     percentage = min(int((current_level_xp / needed_xp) * 100), 100)
 
-    # Dark Cyberpunk Shields Badges URLs
-    streak_badge = f"https://img.shields.io/badge/Streak-{current_streak}_Days-black?style=for-the-badge&logo=gitbook&logoColor=orange"
-    xp_badge = f"https://img.shields.io/badge/Total_XP-{total_xp}_XP-101010?style=for-the-badge&logo=gamepad&logoColor=00f0ff"
-    rank_badge = f"https://img.shields.io/badge/Rank-{rank_name.replace(' ', '_')}-black?style=for-the-badge&logo=shield&logoColor=gold"
+    # Cohesive Cyberpunk Badges (Flat Glowing Minimal Theme)
+    streak_badge = f"https://img.shields.io/badge/🔥_STREAK-{current_streak}_DAYS-ff6b81?style=for-the-badge&labelColor=000000"
+    xp_badge = f"https://img.shields.io/badge/⚡_TOTAL_XP-{total_xp}_XP-70a1ff?style=for-the-badge&labelColor=000000"
+    rank_badge = f"https://img.shields.io/badge/🛡️_RANK-{rank_name.replace(' ', '_')}-{badge_color}?style=for-the-badge&labelColor=000000"
 
-    # Markdown Construction (Dark Mode Theme)
+    # Markdown Construction (Full Dark Theme Cohesive Styling)
     lines = []
     
-    # 1. Dark Aesthetic Top Banner
-    lines.append(f"![Header Banner](https://capsule-render.vercel.app/api?type=waving&color=0:000000,100:0f172a&height=180&section=header&text={USER_NAME}'s%20Habit%20Tracker&fontSize=35&fontColor=ffffff&animation=fadeIn)\n")
+    # 1. Neon Dynamic Header Wave
+    lines.append(f"![Header Banner](https://capsule-render.vercel.app/api?type=rect&color=0:09090e,100:1a1a2e&height=180&section=header&text=🎮%20{USER_NAME}'S%20HABIT%20TRACKER&fontSize=34&fontColor=00f0ff&animation=fadeIn)\n")
     
-    # 2. Glowing Dark Badges
-    lines.append(f"![Rank]({rank_badge}) ![Streak]({streak_badge}) ![XP]({xp_badge})\n")
+    # 2. Centered Badges Row
+    lines.append(f"<div align=\"center\">\n\n![Rank]({rank_badge}) ![Streak]({streak_badge}) ![XP]({xp_badge})\n\n</div>\n")
     
-    # 3. High Contrast Dark Progress Card
+    # 3. Highlighted Callout Progress Container
     lines.append("> [!IMPORTANT]")
-    lines.append(f"> ### 📈 **Level Progress: {percentage}%**")
-    lines.append(f"> <progress value=\"{percentage}\" max=\"100\" style=\"width:100%; height:20px;\"></progress>")
-    lines.append(f"> **Current Level XP:** `{current_level_xp} / {needed_xp} XP` (Next Goal: `{target_xp} XP`)\n")
+    lines.append(f"> ### 🚀 **Level Progress: {percentage}%**")
+    lines.append(f"> <progress value=\"{percentage}\" max=\"100\" style=\"width:100%; height:18px;\"></progress>")
+    lines.append(f"> 🎯 **Current:** `{current_level_xp} XP` | 🏁 **Target:** `{target_xp} XP` (Need `{needed_xp - current_level_xp} XP` more)\n")
 
-    lines.append("---\n")
+    lines.append("\n---\n")
     lines.append("## 🏆 Reward Matrix & Status\n")
     lines.append("| Level | Required XP | Reward | Status |")
     lines.append("| :---: | :---: | :--- | :---: |")
 
     for r in data['rewards']:
-        status = "✅ **UNLOCKED**" if total_xp >= r['required_xp'] else "🔒 **Locked**"
+        status = "🟢 **UNLOCKED**" if total_xp >= r['required_xp'] else "🔴 **LOCKED**"
         lines.append(f"| **{r['level']}** | `{r['required_xp']} XP` | {r['reward']} | {status} |")
 
     lines.append("\n---\n")
-    lines.append("## 📋 Standard Tasks List\n")
-    lines.append("| Task Title | XP Value | Total Completed | Last Date |")
+    lines.append("## 📋 Daily Tasks Dashboard\n")
+    lines.append("| Task Title | XP Reward | Total Completed | Last Activity |")
     lines.append("| :--- | :---: | :---: | :---: |")
 
     for t in data['daily_tasks']:
         completed_count = len(t.get('history', []))
         last_date = t['history'][-1] if t.get('history') else "Never"
-        lines.append(f"| {t['title']} | `+{t['xp']} XP` | `{completed_count} times` | `{last_date}` |")
+        lines.append(f"| ⚡ {t['title']} | `+{t['xp']} XP` | `{completed_count} times` | `{last_date}` |")
 
     lines.append("\n---\n")
-    lines.append("## 📅 Last 7 Days Activity History\n")
-    lines.append("| Day | Date | Activity Status |")
+    lines.append("## 📅 7-Day Performance Log\n")
+    lines.append("| Day | Date | Status |")
     lines.append("| :---: | :---: | :---: |")
 
     for i in range(6, -1, -1):
         day_date = (today_dt - timedelta(days=i)).strftime('%Y-%m-%d')
         day_name = (today_dt - timedelta(days=i)).strftime('%a')
         was_active = any(day_date in t.get('history', []) for t in data['daily_tasks'])
-        status_icon = "🔥 **Active Day**" if was_active else "❌ *Missed*"
+        status_icon = "🔥 **ACTIVE**" if was_active else "⚪ *MISSED*"
         lines.append(f"| {day_name} | `{day_date}` | {status_icon} |")
 
-    lines.append(f"\n> [!TIP]\n> Keep updating `tasks.json` daily, **{USER_NAME}**! Stay consistent to unlock new rewards and level up!")
+    lines.append(f"\n> [!TIP]\n> Keep grinding daily, **{USER_NAME}**! Complete tasks in `tasks.json` to keep your streak alive! ⚡")
 
     readme_content = "\n".join(lines)
 
