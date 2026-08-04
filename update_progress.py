@@ -5,13 +5,13 @@ USER_NAME = "Parthsinh"
 
 def get_rank_details(xp):
     if xp < 500:
-        return "Novice Tracker", "🥉", "ff4757"  # Soft Red
+        return "Novice Tracker", "ff4757"  # Red
     elif xp < 1500:
-        return "Habit Apprentice", "🥈", "eccc68"  # Gold
+        return "Habit Apprentice", "eccc68"  # Gold
     elif xp < 3500:
-        return "Consistency Master", "🥇", "2ed573"  # Emerald Green
+        return "Consistency Master", "2ed573"  # Emerald Green
     else:
-        return "Legendary Life-Hacker", "👑", "70a1ff"  # Neon Blue
+        return "Legendary Life-Hacker", "70a1ff"  # Blue
 
 def calculate_streak(history_dates):
     if not history_dates:
@@ -65,7 +65,7 @@ def run():
         json.dump(data, f, indent=2)
 
     total_xp = data['total_xp']
-    rank_name, badge_icon, badge_color = get_rank_details(total_xp)
+    rank_name, badge_color = get_rank_details(total_xp)
     current_streak = calculate_streak(all_completed_dates)
 
     # Level calculation for progress bar
@@ -82,21 +82,21 @@ def run():
     needed_xp = max(target_xp - prev_target, 1)
     percentage = min(int((current_level_xp / needed_xp) * 100), 100)
 
-    # Cohesive Cyberpunk Badges (Flat Glowing Minimal Theme)
-    streak_badge = f"https://img.shields.io/badge/🔥_STREAK-{current_streak}_DAYS-ff6b81?style=for-the-badge&labelColor=000000"
-    xp_badge = f"https://img.shields.io/badge/⚡_TOTAL_XP-{total_xp}_XP-70a1ff?style=for-the-badge&labelColor=000000"
-    rank_badge = f"https://img.shields.io/badge/🛡️_RANK-{rank_name.replace(' ', '_')}-{badge_color}?style=for-the-badge&labelColor=000000"
+    # URL Encoded Safe Badges (No raw emoji inside badge URLs)
+    clean_rank = rank_name.replace(' ', '_')
+    streak_badge = f"https://img.shields.io/badge/Streak-{current_streak}_Days-ff6b81?style=for-the-badge&logo=gitbook&logoColor=white"
+    xp_badge = f"https://img.shields.io/badge/Total_XP-{total_xp}_XP-70a1ff?style=for-the-badge&logo=gamepad&logoColor=white"
+    rank_badge = f"https://img.shields.io/badge/Rank-{clean_rank}-{badge_color}?style=for-the-badge&logo=shield&logoColor=white"
 
-    # Markdown Construction (Full Dark Theme Cohesive Styling)
     lines = []
     
-    # 1. Neon Dynamic Header Wave
+    # 1. Header Banner
     lines.append(f"![Header Banner](https://capsule-render.vercel.app/api?type=rect&color=0:09090e,100:1a1a2e&height=180&section=header&text=🎮%20{USER_NAME}'S%20HABIT%20TRACKER&fontSize=34&fontColor=00f0ff&animation=fadeIn)\n")
     
-    # 2. Centered Badges Row
-    lines.append(f"<div align=\"center\">\n\n![Rank]({rank_badge}) ![Streak]({streak_badge}) ![XP]({xp_badge})\n\n</div>\n")
+    # 2. Clean Badges Line
+    lines.append(f"![Rank]({rank_badge}) ![Streak]({streak_badge}) ![XP]({xp_badge})\n")
     
-    # 3. Highlighted Callout Progress Container
+    # 3. Progress Card
     lines.append("> [!IMPORTANT]")
     lines.append(f"> ### 🚀 **Level Progress: {percentage}%**")
     lines.append(f"> <progress value=\"{percentage}\" max=\"100\" style=\"width:100%; height:18px;\"></progress>")
