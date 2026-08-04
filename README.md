@@ -1,8 +1,15 @@
 # 🎮 Daily Life & Habit Tracker
 
-### 📊 Current Score Board
-- **Total XP Earned:** `90 XP`
-- **Last Updated:** `2026-07-30`
+<div align="center">
+
+### 🛡️ **Current Rank:** `🥉 Novice Tracker`
+### 🔥 **Streak:** `0 Days` | 📊 **Total XP:** `90 XP` 
+
+```text
+Level Progress: [█░░░░░░░░░] 18% (90/500 XP)
+```
+
+</div>
 
 ---
 
@@ -17,7 +24,7 @@
 
 ---
 
-## 📋 Standard Tasks & Activity Log
+## 📋 Standard Tasks List
 
 | Task Title | XP Value | Total Times Completed | Last Completed Date |
 | :--- | :--- | :--- | :--- |
@@ -26,4 +33,18 @@
 | Exercise / Walk (30 mins) | +15 XP | 0 times | `Never` |
 | Read 5 pages of a book | +10 XP | 0 times | `Never` |
 
-> *Update `tasks.json` daily and commit to gain XP and unlock rewards!*
+---
+
+## 📅 Last 7 Days Activity History
+
+| Day | Date | Status |
+| :--- | :--- | :--- |
+| Wed | `2026-07-29` | ❌ Missed |
+| Thu | `2026-07-30` | 🔥 Active Day |
+| Fri | `2026-07-31` | ❌ Missed |
+| Sat | `2026-08-01` | ❌ Missed |
+| Sun | `2026-08-02` | ❌ Missed |
+| Mon | `2026-08-03` | ❌ Missed |
+| Tue | `2026-08-04` | ❌ Missed |
+
+> *⚡ Complete daily tasks in `tasks.json` to keep your streak alive and level up!*
