@@ -48,7 +48,7 @@ def run():
 
     all_completed_dates = []
 
-    # Update task history and reset completion
+    # Update task history and reset completion status
     for t in data['daily_tasks']:
         if 'history' not in t:
             t['history'] = []
@@ -60,7 +60,7 @@ def run():
             
         all_completed_dates.extend(t['history'])
 
-    # Save updated JSON
+    # Save updated JSON back
     with open('tasks.json', 'w') as f:
         json.dump(data, f, indent=2)
 
@@ -82,7 +82,7 @@ def run():
     needed_xp = max(target_xp - prev_target, 1)
     percentage = min(int((current_level_xp / needed_xp) * 100), 100)
 
-    # Colors and Badges URLs
+    # Shields Badges URLs
     streak_badge = f"https://img.shields.io/badge/Streak-{current_streak}_Days-orange?style=for-the-badge&logo=gitbook&logoColor=white"
     xp_badge = f"https://img.shields.io/badge/Total_XP-{total_xp}_XP-blue?style=for-the-badge&logo=gamepad&logoColor=white"
     rank_badge = f"https://img.shields.io/badge/Rank-{rank_name.replace(' ', '_')}-{badge_color}?style=for-the-badge&logo=shield"
@@ -94,11 +94,11 @@ def run():
     # Header Badges Box
     lines.append(f"![Rank]({rank_badge}) ![Streak]({streak_badge}) ![XP]({xp_badge})\n")
     
-    # Visual HTML Progress Bar Section
+    # Visual Progress Bar Box (GitHub Callout)
     lines.append("> [!NOTE]")
     lines.append(f"> ### 📈 **Level Progress: {percentage}%**")
     lines.append(f"> <progress value=\"{percentage}\" max=\"100\" style=\"width:100%; height:20px;\"></progress>")
-    lines.append(f"> **Current Level XP:** `{current_level_xp} / {needed_xp} XP` (Next Level: `{target_xp} XP`)\n")
+    lines.append(f"> **Current Level XP:** `{current_level_xp} / {needed_xp} XP` (Next Level Goal: `{target_xp} XP`)\n")
 
     lines.append("---\n")
     lines.append("## 🏆 Reward Matrix & Status\n")
