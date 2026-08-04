@@ -1,6 +1,8 @@
 import json
 from datetime import datetime, timedelta
 
+USER_NAME = "Parthsinh"  # 👈 Aapka Name Profile Header Ke Liye
+
 def get_rank_and_badge(xp):
     if xp < 500:
         return "🥉 Novice Tracker"
@@ -87,12 +89,13 @@ def run():
     progress_bar = generate_progress_bar(total_xp)
     current_streak = calculate_streak(all_completed_dates)
 
-    # Clean Markdown construction without div bugs
+    # Clean Markdown construction
     lines = []
-    lines.append("# 🎮 Daily Life & Habit Tracker\n")
+    lines.append(f"# 🎮 {USER_NAME}'s Daily Life & Habit Tracker\n")
+    lines.append(f"### 👤 Player Profile: **{USER_NAME}**")
     lines.append(f"### 🛡️ Rank: **{rank}**\n")
-    lines.append(f"- 🔥 **Streak:** `{current_streak} Days`")
-    lines.append(f"- 📊 **Total XP:** `{total_xp} XP`")
+    lines.append(f"- 🔥 **Current Streak:** `{current_streak} Days`")
+    lines.append(f"- 📊 **Total XP Earned:** `{total_xp} XP`")
     lines.append(f"- 📈 **Level Progress:** {progress_bar}\n")
     
     lines.append("---\n")
@@ -126,7 +129,7 @@ def run():
         status_icon = "🔥 Active Day" if was_active else "❌ Missed"
         lines.append(f"| {day_name} | `{day_date}` | {status_icon} |")
 
-    lines.append("\n> *⚡ Complete daily tasks in `tasks.json` to keep your streak alive and level up!*")
+    lines.append(f"\n> *⚡ Keep updating `tasks.json` daily, {USER_NAME}! Keep your streak alive and level up!*")
 
     readme_content = "\n".join(lines)
 
