@@ -1,9 +1,10 @@
-# 🎮 Daily Life & Habit Tracker
+# 🎮 Parthsinh's Daily Life & Habit Tracker
 
+### 👤 Player Profile: **Parthsinh**
 ### 🛡️ Rank: **🥉 Novice Tracker**
 
-- 🔥 **Streak:** `0 Days`
-- 📊 **Total XP:** `90 XP`
+- 🔥 **Current Streak:** `0 Days`
+- 📊 **Total XP Earned:** `90 XP`
 - 📈 **Level Progress:** `[█░░░░░░░░░] 18% (90/500 XP)`
 
 ---
@@ -42,4 +43,4 @@
 | Mon | `2026-08-03` | ❌ Missed |
 | Tue | `2026-08-04` | ❌ Missed |
 
-> *⚡ Complete daily tasks in `tasks.json` to keep your streak alive and level up!*
+> *⚡ Keep updating `tasks.json` daily, Parthsinh! Keep your streak alive and level up!*
