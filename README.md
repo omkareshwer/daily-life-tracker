@@ -1,15 +1,10 @@
 # 🎮 Daily Life & Habit Tracker
 
-<div align="center">
+### 🛡️ Rank: **🥉 Novice Tracker**
 
-### 🛡️ **Current Rank:** `🥉 Novice Tracker`
-### 🔥 **Streak:** `0 Days` | 📊 **Total XP:** `90 XP` 
-
-```text
-Level Progress: [█░░░░░░░░░] 18% (90/500 XP)
-```
-
-</div>
+- 🔥 **Streak:** `0 Days`
+- 📊 **Total XP:** `90 XP`
+- 📈 **Level Progress:** `[█░░░░░░░░░] 18% (90/500 XP)`
 
 ---
 
